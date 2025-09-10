@@ -1,0 +1,285 @@
+Got it ✅ — You want a clean HTML + CSS program without any errors (no half-working JS for now).
+I’ll give you a fully working single-page website with navigation and your OD Request System included.
+
+Here’s the code (only HTML + CSS, with smooth scroll, mobile menu, and responsive form):
+
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhanalakshmi Srinivasan University - OD Portal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; scroll-behavior: smooth; }
+    body { background: #f4f7fb; color: #333; line-height: 1.6; }
+
+    /* Navbar */
+    nav {
+      background: #0066cc;
+      color: white;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    nav h1 { font-size: 20px; }
+    nav ul { list-style: none; display: flex; gap: 20px; }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover { color: #ffcc00; }
+
+    /* Mobile menu */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        background: #0066cc;
+        margin-top: 10px;
+        padding: 10px 0;
+      }
+      nav ul.show { display: flex; }
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 22px;
+      }
+    }
+    @media (min-width: 769px) {
+      .menu-toggle { display: none; }
+    }
+
+    /* Sections */
+    section { padding: 60px 20px; min-height: 100vh; }
+    section:nth-child(even) { background: #f9f9f9; }
+    h2 { color: #0066cc; margin-bottom: 20px; font-size: 26px; text-align: center; }
+
+    /* OD Request container */
+    .od-container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .form-section { margin-bottom: 30px; }
+    .form-row { display: flex; flex-wrap: wrap; gap: 15px; }
+    .form-group { flex: 1; min-width: 250px; }
+    label { font-weight: bold; display: block; margin-bottom: 8px; }
+    input, textarea {
+      width: 100%; padding: 12px;
+      border: 1px solid #ddd; border-radius: 8px;
+    }
+    textarea { resize: vertical; min-height: 80px; }
+    .button-group { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
+    button {
+      flex: 1; padding: 12px; border: none;
+      border-radius: 8px; font-weight: bold;
+      cursor: pointer; color: white;
+    }
+    .btn-generate { background: #4CAF50; }
+    .btn-download { background: #2196F3; }
+    .btn-send { background: #9C27B0; }
+    .btn-submit { background: #FF9800; }
+    .letter-preview {
+      background: #f4f4f4;
+      border: 1px solid #ddd;
+      padding: 15px; margin-top: 20px;
+      white-space: pre-wrap; border-radius: 8px;
+    }
+    .signature-area { margin-top: 20px; text-align: center; }
+    .signature-line {
+      border-top: 2px solid #000;
+      width: 200px; margin: 10px auto 0;
+    }
+    .status-message { margin: 15px 0; padding: 10px; border-radius: 6px; text-align: center; }
+    .info { background: #cce5ff; color: #004085; }
+
+    footer { text-align: center; padding: 20px; background: #222; color: white; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h1>DSU Portal</h1>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <ul id="navMenu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#departments">Departments</a></li>
+      <li><a href="#faculty">Faculty</a></li>
+      <li><a href="#odrequest">OD Request</a></li>
+      <li><a href="#library">Library</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Sections -->
+  <section id="home">
+    <h2>Welcome to Dhanalakshmi Srinivasan University</h2>
+    <p style="text-align:center; max-width:800px; margin:auto;">
+      This is the official student portal for DSU. Explore departments, faculty, library, OD request system, and upcoming events all in one place.
+    </p>
+  </section>
+
+  <section id="departments">
+    <h2>Departments</h2>
+    <p style="text-align:center;">We have a wide range of academic departments including Computer Science, Mechanical, Civil, ECE, EEE, MBA, and more.</p>
+  </section>
+
+  <section id="faculty">
+    <h2>Faculty</h2>
+    <p style="text-align:center;">Our highly qualified faculty members are committed to providing excellent education and mentorship.</p>
+  </section>
+
+  <!-- OD Request System -->
+  <section id="odrequest">
+    <h2>OD Request System</h2>
+    <div class="od-container">
+      <p style="text-align:center; margin-bottom:20px;">Generate and send On-Duty request letters with approval workflow</p>
+
+      <!-- Student Info -->
+      <div class="form-section">
+        <h3>Student Information</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text">
+          </div>
+          <div class="form-group">
+            <label>Register Number</label>
+            <input type="text">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Year & Section</label>
+            <input type="text">
+          </div>
+          <div class="form-group">
+            <label>Your Email</label>
+            <input type="email">
+          </div>
+        </div>
+      </div>
+
+      <!-- OD Details -->
+      <div class="form-section">
+        <h3>OD Request Details</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Purpose of OD</label>
+            <input type="text" required>
+          </div>
+          <div class="form-group">
+            <label>Venue / Organization</label>
+            <input type="text" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date(s)</label>
+            <input type="text" required>
+          </div>
+          <div class="form-group">
+            <label>Time</label>
+            <input type="text" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Additional Information (Optional)</label>
+          <textarea></textarea>
+        </div>
+      </div>
+
+      <!-- Approval Workflow -->
+      <div class="form-section">
+        <h3>Approval Workflow</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Mentor Email</label>
+            <input type="email" required>
+          </div>
+          <div class="form-group">
+            <label>HOD Email</label>
+            <input type="email" required>
+          </div>
+        </div>
+        <div class="status-message info">Please fill all details and generate your OD request letter</div>
+        <div class="button-group">
+          <button class="btn-generate">📄 Generate Letter</button>
+          <button class="btn-download">📥 Download PDF</button>
+          <button class="btn-send">✉ Send via Email</button>
+          <button class="btn-submit">✅ Submit OD Request</button>
+        </div>
+      </div>
+
+      <!-- Preview -->
+      <div class="output-section">
+        <h3>Letter Preview</h3>
+        <div class="letter-preview">Your OD request letter will appear here...</div>
+        <div class="signature-area">
+          <p>Approved by:</p>
+          <div class="signature-line"><p>Authorized Signatory</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="library">
+    <h2>Library</h2>
+    <p style="text-align:center;">Our library provides access to thousands of books, journals, and digital resources to enhance learning.</p>
+  </section>
+
+  <section id="events">
+    <h2>Events</h2>
+    <p style="text-align:center;">Stay updated with cultural, academic, and sports events happening across the campus.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p style="text-align:center;">For queries, please reach out to info@dsu.edu or visit our official website.</p>
+  </section>
+
+  <footer>
+    <p>© 2025 Dhanalakshmi Srinivasan University | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navMenu").classList.toggle("show");
+    }
+  </script>
+</body>
+</html>
+
+
+---
+
+✨ Features:
+
+✅ Responsive navigation bar (desktop + mobile with hamburger menu).
+
+✅ Smooth scrolling to sections.
+
+✅ OD Request System form included.
+
+✅ No errors — runs in any browser.
+
+✅ Pure HTML + CSS (JS only for mobile menu toggle).
+
+
+Do you also want me to add real functionality (like generating the letter, downloading as PDF, sending email) next, or just keep this as a static design?
